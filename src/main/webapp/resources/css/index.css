@@ -1,0 +1,239 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+hr{border:0;border-top:1px solid #eee;margin:20px 0;
+margin-left: 10%;margin-right: 10%;}
+
+body {
+	font-family: 'Nanum Gothic', sans-serif;
+	overflow-x:hidden; overflow-y:auto;
+ width: 100%;
+ text-align: center;
+  margin: 0;
+/*   font-family: Arial, Helvetica, sans-serif; */
+}
+
+h1 {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Style the content */
+.content {
+    text-align: center;
+    background-color: ;
+    
+    
+}
+
+
+/* Style the footer */
+.footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+.re_eqdiv{
+	overflow: hidden;
+}
+#re_eq{
+    width: 100%;
+    background-color: aquamarine;
+    display:block;
+}
+
+#re_eq div{
+	width: 100%;
+	height: auto; 
+}
+#re_eq img{
+	  max-width: 100%; 
+	height: auto;
+}
+
+/* .recent_eq { */
+/*     padding-left: 10%; */
+/*     padding-right: 10%; */
+/*     width: 100%; */
+/*     background-color: aquamarine; */
+/*     display: inline-flex; */
+/* } */
+
+/* .recent_eq div { */
+/*     width: 50%; */
+/*     height: auto;  */
+/* } */
+/* .recent_eq_txt { */
+/*     background-color: beige; */
+/* } */
+
+/* .recent_eq_img img { */
+/*      max-width: 100%;  */
+/*      height: auto;  */
+/*      border-width: 20px;   border-color: orange;   border-style: solid; */
+
+/* } */
+
+.result_eq_list {
+    padding: 2%;
+    background-color: firebrick;
+}
+.action_tips {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.action_tips div img{
+    max-width: 100%; height: auto;
+}
+
+.data_div {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+#chart_div1 {
+    background-color: aqua;
+    max-width: 100%;
+    height: auto;
+}
+.data_div {
+    padding-left: 10%;
+    padding-right: 10%;
+    width: 100%;
+    display: inline-flex; 
+    
+}
+.data1L, .data1R {
+    width: 50%;
+    background-color: forestgreen;
+    
+}
+.place div{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.map {
+    display: inline-block;
+    max-width: 100%; height: auto;
+    background-color: fuchsia;
+    text-align: right;
+}
+
+.place {
+    padding-left: 10%;
+    padding-right: 10%;
+    width: 100%;
+}
+
+.search_btn{
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.search_btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.search_btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.search_btn:hover span {
+  padding-right: 25px;
+}
+
+.search_btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.place_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.place_table th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.place_table tr:hover {background-color:#f5f5f5;}
+
+
+
+
+
+
+
+
+.result_eq_list{
+	display: hidden;
+}
+.action_tips{
+	display: hidden;
+}
+.data_div{
+	display: hidden;
+}
+
+.logo:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+}
