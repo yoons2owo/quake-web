@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Oxygen &mdash; Free Website Template, Free HTML5 Template by gettemplates.co</title>
+	<title>동공지진</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by gettemplates.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -30,6 +31,11 @@
 	<script src="resources/js/rSlider.min.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dc00a5485c8f690d8ebb8be4f0b6bf5e&libraries=services"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
+	<link rel="stylesheet" type="text/css"  media="only screen and (max-width: 1200px)" href="resources/css/tab.css">
+   <link rel="stylesheet" type="text/css"  media="only screen and (max-width: 750px)" href="resources/css/phone.css">
+	
+	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="resources/css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -68,7 +74,7 @@
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-xs-2">
-					<div id="gtco-logo"><a href="#"><img src="resources/images/homeicon.png" width="30px"></a></div>
+					<div id="gtco-logo"><a href=""><img src="resources/images/homeicon.png" width="30px"></a></div>
 				</div>
 				<div class="col-xs-8 text-center menu-1">
 					<ul>
@@ -122,8 +128,8 @@
 							<i class="icon-clock"></i>
 						</span>
 						<h3>최근지진</h3>
-						<p>최근 국내,국외의 지진 발생 기록을 실시간으로 나타냅니다.</p>
-						<p><a href="#" class="btn btn-primary">Learn More</a></p>
+						<p>국내,외의 지진 발생 상황을 실시간으로 나타냅니다.</p>
+						<p id ="href6"><span class="btn btn-primary">More</span></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4">
@@ -131,9 +137,9 @@
 						<span class="icon">
 							<i class="icon-bar-graph"></i>
 						</span>
-						<h3>데이터 조회 · 분석</h3>
-						<p></p>
-						<p><a href="#" class="btn btn-primary">Learn More</a></p>
+						<h3> 데이터 조회 · 분석</h3>
+						<p>국내지진 목록 · 데이터 분석 자료를 제공합니다.</p>
+						<p id ="href7"><a href="" class="btn btn-primary">More</a></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4">
@@ -142,8 +148,8 @@
 							<i class="icon-box"></i>
 						</span>
 						<h3>대피소 조회</h3>
-						<p>지진 대피소 정보를 지도로 제공</p>
-						<p><a href="#" class="btn btn-primary">Learn More</a></p>
+						<p>전국의 지진 대피소 위치 및 상세 정보를 제공합니다.</p>
+						<p id ="href8"><a href="" class="btn btn-primary">More</a></p>
 					</div>
 				</div>
 			</div>
@@ -159,52 +165,7 @@
 				</div>
 			</div>
 			<div class="row" id ="apiDiv">
-<!-- 				<div class="col-md-6"> -->
-<!-- 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 						<span class="icon"> -->
-<!-- 							<i class="icon-check"></i> -->
-<!-- 						</span> -->
-<!-- 						<div class="feature-copy"> -->
-<!-- 							<h3>위치</h3> -->
-<!-- 							<p> <span id="apiLoc"> </span> </p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
 
-<!-- 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 						<span class="icon"> -->
-<!-- 							<i class="icon-check"></i> -->
-<!-- 						</span> -->
-<!-- 						<div class="feature-copy"> -->
-<!-- 							<h3>진도</h3> -->
-<!-- 							<p><span id="apiMt"> </span></p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-
-<!-- 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 						<span class="icon"> -->
-<!-- 							<i class="icon-check"></i> -->
-<!-- 						</span> -->
-<!-- 						<div class="feature-copy"> -->
-<!-- 							<h3>발생 시각</h3> -->
-<!-- 							<p><span id="apiTime"> </span></p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="feature-left animate-box" data-animate-effect="fadeInLeft"> -->
-<!-- 						<span class="icon"> -->
-<!-- 							<i class="icon-check"></i> -->
-<!-- 						</span> -->
-<!-- 						<div class="feature-copy"> -->
-<!-- 							<h3>참고 사항</h3> -->
-<!-- 							<p><span id="apiRem"> </span></p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="row animate-box"> -->
-<!-- 				<div class="col-md-6"> -->
-<!-- 					<div class="gtco-video gtco-bg" id ="apiImg" > -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				</div> -->
 				<button class="w3-button w3-light-grey noselection w3-display-left" onclick="plusDivs(-1)">❮</button>
 	            <button class="w3-button w3-light-grey noselection w3-display-right" onclick="plusDivs(+1)">❯</button>
 			</div>
@@ -220,8 +181,7 @@
                     </div>
 			<div class="row">
 			
-				<div class="display-t" id="leftD" style="width: 60%;
-    display: block;">
+				<div class="leftD" id="leftD" >
 				
                     <div class="row animate-box">
                         <div class="col-md-12">
@@ -230,9 +190,9 @@
                                     <div class="form-group" id="listFont">
                                        <p>
                                            <span>발생기간 &nbsp</span>
-								<input type="date" class="form-control" id="dateFrom_id" placeholder="date"  name="dateFrom"  value="2018-01-01" >
+								<input type="date" class="form-control" id="dateFrom_id" placeholder="date"  min="1990-01-01" name="dateFrom"  value="2018-01-01" >
                                 <span>~</span>    
-								<input type="date" class="form-control" id="dateTo_id" placeholder="date" name="dateTo">
+								<input type="date" class="form-control" id="dateTo_id" placeholder="date" min="1990-01-01" min="1990-01-01" max="" name="dateTo">
 								
                                </p>
                                <p>
@@ -290,14 +250,14 @@
 			        
 				
 				</div>
-				 	<div class="display-tc" id="resultCountDiv" style="width: 30%;">
+				 	<div class="countDiv" id="resultCountDiv">
 
 					</div>
 			</div>
 		</div>
 	</div>
 	<div id="place_list_div" style="display: none;">
-<!-- 		<div id="gtco-services" > -->
+		<div id="gtco-services" >
 			<div class="gtco-container">
 				<div>
 				<div class="mapDivR"> 
@@ -317,7 +277,8 @@
 				</div>
 					
 			</div>
-<!-- 		</div> --></div>
+		</div>
+</div>
 	</div>
 
 
@@ -410,7 +371,7 @@
 					<div class="gtco-tab-content-wrap" style="top: 10px; " id="aResultDiv2">
 						<div class="gtco-tab-content tab-content active" data-tab-content="1" id="resultDiv1">
 								<div id="piechart" class="resultDiv3"></div>
-								<div id="map1" " class="resultDiv3"></div>
+								<div id="map1"  class="resultDiv3"></div>
 						</div>
 
 						<div class="gtco-tab-content tab-content" data-tab-content="2">
@@ -480,6 +441,7 @@
 	    <div class="shelterList">
 	        <table class="shelterTable"></table>
 	    </div>
+	    <div class="page_list2"></div>
 	</div>
 
 	<footer id="gtco-footer" role="contentinfo">
@@ -492,7 +454,7 @@
 					국내지진 자료  · 지진정보조회 API  <a href="http://www.weather.go.kr/weather/main.jsp"> 기상청</a><br>
 					대피소 자료  <a href="https://data.mpss.go.kr"> 행정안전부</a>
 					</P>
-					<p class="pull-left">
+					<p >
 						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small> 
 						<small class="block">Designed by <a href="http://gettemplates.co/" target="_blank">GetTemplates.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
 					</p>
@@ -543,4 +505,6 @@
 	</div>
 	</body>
 </html>
+
+
 

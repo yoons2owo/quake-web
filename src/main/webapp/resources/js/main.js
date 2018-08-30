@@ -274,7 +274,7 @@
 	
 	$(function(){
 		mobileMenuOutsideClick();
-		offcanvasMenu();
+//		offcanvasMenu();
 		burgerMenu();
 		contentWayPoint();
 		dropdown();
@@ -333,12 +333,21 @@
   }
  });
     
+ var slideW = "700px";
+ var windowWidth = $( window ).width();
+	if(windowWidth < 750) {
+		slideW = "450px";
+	}else {
+		slideW = "700px";
+	}
+ 
+ 
 var mySlider = new rSlider({
 	    target: '#slider',
 	    values: {min: 1990, max: 2018},
 	    range: true, // range slider
 	    set:    null, // an array of preselected values
-	    width:    "700px",
+	    width:   slideW,
 	    scale:    true,
 	    labels:   false,
 	    tooltip:  true,
@@ -362,7 +371,9 @@ inputNow += (parseInt(Now.getMonth()) + 1).toString() + "-";
 inputNow += Now.getDate().toString();
 
 document.getElementById("dateTo_id").value = inputNow;
+document.getElementById("dateTo_id").max = inputNow;
 
+document.getElementById("dateFrom_id").max = inputNow;
 
  $.ajax({
     url : "getApi" ,
@@ -490,12 +501,12 @@ document.getElementById("dateTo_id").value = inputNow;
      	element.style.backgroundImage = "url("+img+")";
 	     
  }
- /************************목록조회******************************/
- var dataJson;
-	var pageTotal;
-	var boardNo;
-	var count = 0;
-	var page10Count = 0;
+ /************************목록  ******************************/
+var dataJson;
+var pageTotal;
+var boardNo;
+var count = 0;
+var page10Count = 0;
 	
 	$("#search").on("click", function(){
 		
@@ -533,7 +544,7 @@ document.getElementById("dateTo_id").value = inputNow;
 				var htmlCount = "";
 //				document.getElementById("resultCountDiv").style.display = "block";
 				htmlCount = '\
-				<div class="feature-center" >\
+				<div class="feature-center2" >\
 				<span class="icon">\
 					<i class="icon-eye"></i>\
 				</span>\
@@ -551,42 +562,70 @@ document.getElementById("dateTo_id").value = inputNow;
 				pageTotal = Math.ceil((boardNo / 15)); 
 				
 				var pageNo = 1;
-				
-				$(".page_list").empty();
-				var pageHtml = "";
-				
-				for(var i = 1; i <= pageTotal; i++){
-					pageHtml += "<button class='page' value="+i+">"+i+"</button>";
-				}
-				$(".page_list").append(pageHtml);
-				
-				
-				
-				
+
 				pageCall(pageNo);
 				
-		     
-		     
-				
-				
-				$('.page').click(function(){
-				    var pageNo =  $(this).attr("value");
-				    console.log("페이지넘"+pageNo);
-				    pageCall(pageNo);
-				});
 			}
 			
-
-		
+			
+			
 		});
-		
-		
 		
 	});
 	
 	
 	
+//	var nextCount = 0;
+//	$('.nextpage').click(function(){
+//		
+//		nextCount = nextCount + 1;
+//		console.log(nextCount);
+//		var nowPage = nextCount * 10 + 1;
+//		$(".page_list").empty();
+//		
+//		var pageHtml = "";
+//		pageHtml += "<button class='beforepage'><<</button>";
+//		for(var i = nowPage; i <= nowPage+10 ; i++){
+//			pageHtml += "<button class='page' value="+i+">"+i+"</button>";
+//		}
+//		pageHtml += "<button class='nextpage'>>></button>";
+//		$(".page_list").append(pageHtml);
+//		
+//	    pageCall(nowPage);
+//	});
+	
+	
 	function pageCall(pageNo){
+		
+		$(".page_list").empty();
+		
+		var pageHtml = "";
+		
+		
+		if(pageNo == 1) {
+			if (pageNo == pageTotal) {
+				pageHtml += pageNo +" 페이지";
+			}else {
+				pageHtml += pageNo +" 페이지";
+				pageHtml += "<button class='nextpage'>></button>";
+			}
+			
+		}else {
+			if (pageNo == pageTotal) {
+				pageHtml += "<button class='beforepage'><</button>";
+				pageHtml += pageNo +" 페이지";
+			}else {
+				pageHtml += "<button class='beforepage'><</button>";
+				pageHtml += pageNo +" 페이지";
+				pageHtml += "<button class='nextpage'>></button>";
+			}
+			
+		}
+		
+		
+		
+		$(".page_list").append(pageHtml);
+		
 		var element = document.getElementById("place_list_div");
 		element.style.display ="block";
 		
@@ -607,7 +646,6 @@ document.getElementById("dateTo_id").value = inputNow;
 				} 
     	 }else{
     		 var boardNoSub = boardNo;
-    		 console.log(boardNoSub - ((pageTotal-1)*15));
     		 for ( var i = 0; i < boardNoSub - ((pageTotal-1)*15) ; i++){
     			 
      			mapList += "<th>" + (boardNo - (15 * (pageNo - 1))).toString() + "</th>";
@@ -627,7 +665,22 @@ document.getElementById("dateTo_id").value = inputNow;
          $('.mapButton').click(function(){
 			    var mapNo =  $(this).attr("value");
 			    mapOpen(mapNo);
-			});
+		 });
+         
+     	
+     	$('.nextpage').click(function(){
+     	    pageNo = pageNo + 1;
+     	    console.log("페이지넘"+pageNo);
+     	    pageCall(pageNo);
+     	});
+     	
+     	$('.beforepage').click(function(){
+     	    pageNo = pageNo - 1;
+     	    console.log("페이지넘"+pageNo);
+     	    pageCall(pageNo);
+     	});
+     	
+     	
 	}
 	
 	function mapOpen(mapNo){
@@ -1073,7 +1126,8 @@ document.getElementById("dateTo_id").value = inputNow;
 		        var options = {
 		          title: '규모별 지진 발생 횟수',
 		          is3D: true,
-		          fontName : 'Nanum Gothic'
+		          fontName : 'Nanum Gothic',
+		          width: '100%',
 		        };
 	
 		        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -1437,14 +1491,13 @@ document.getElementById("dateTo_id").value = inputNow;
 	$("#shelterSearch").on("click", function(){
 		var sido = $("select[name=sido1]").val();
 		var gugun = $("select[name=gugun1]").val();
-		var gb = $("select[name=gb]").val();
+		gb = $("select[name=gb]").val();
 		
 		$.ajax({
 		    url : "getMap" ,
 				type: "post",
 				data: {"sido": sido , "gugun": gugun, "gb" : gb},
 		    success : function(result) {
-		    	console.log(result);
 		    	
 		    	if (result.mapResult.length == 0){
 		    		alert("검색 결과가 없거나 요청이 올바르지 않습니다.");
@@ -1455,24 +1508,26 @@ document.getElementById("dateTo_id").value = inputNow;
 			    	var result = result.mapResult;
 			    	
 			    	for (var i = 0; i < result.length; i++) {
-			    		sub = new Object(); 
-			    		sub.content = "<div>" +result[i]['시설명'] +"</div>";
-				    	sub.latlng = new daum.maps.LatLng(result[i]['경도'], result[i]['위도']);
-				    	positions.push(sub);
+			    		if (result[i]['경도'] && result[i]['위도']) {
+			    			sub = new Object(); 
+				    		sub.content = "<div style ='width:200px; text-align:center;'>" +result[i]['시설명'] +"</div>";
+					    	sub.latlng = new daum.maps.LatLng(result[i]['경도'], result[i]['위도']);
+					    	positions.push(sub);
+			    		}
 			    	}
 
 			    	var mapContainer = document.getElementById('shelterMap'), // 지도를 표시할 div  
 		    	    mapOption = { 
-		    	        center: new daum.maps.LatLng(result[0]['경도'], result[0]['위도']), // 지도의 중심좌표
-		    	        level: 7 // 지도의 확대 레벨
+		    	        center: positions[0]['latlng'], // 지도의 중심좌표
+		    	        level: 5 // 지도의 확대 레벨
 		    	    };
 
-		    	    var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		    	    placeMap = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			    	
 			    	for (var i = 0; i < positions.length; i ++) {
 			    	    // 마커를 생성합니다
 			    	    var marker = new daum.maps.Marker({
-			    	        map: map, // 마커를 표시할 지도
+			    	        map: placeMap, // 마커를 표시할 지도
 			    	        position: positions[i].latlng,	// 마커의 위치
 			    	        clickable: true 
 			    	    });
@@ -1486,43 +1541,134 @@ document.getElementById("dateTo_id").value = inputNow;
 			    	               content: iwContent,
 			    	               removable : true
 			    	           });
-			    	         infowindow.open(map, marker);
+			    	         infowindow.open(placeMap, marker);
 			    	       }
 			    	   })(marker, i));
 
 			    	}
 			    	//리스트
-			    	var mapList = "<tr><th>시설명</th><th>상세주소</th><th>시설면적(m²)</th><th>시설구분</th></tr><tr>";
-					for (var i = 0; i < result.length; i++) {
-			            mapList += "<th>" + result[i]['시설명'] + "</th>";
-			            mapList += "<th><button class='mapcenter' id='"+result[i]['경도']+","+ result[i]['위도']+"'><img src='resources/images/marker_icon-icons.com_54388.svg'  width='19px'></button>" + result[i]['주소'] + "</th>";
-			            mapList += "<th>" + parseInt(result[i]['면적']) + "</th>";
-			            
-			            if (gb=="ingb"){
-			            	mapList += "<th>실내대피소 </th></tr>";
-			            } else if (gb=="outgb"){
-			            	mapList += "<th>옥외대피소 </th></tr>";
-			            }
-			            
-			            $(".shelterTable").empty();
-			            $(".shelterTable").append(mapList);
-					}
-					$(".mapcenter").on("click", function(){
-						var loc =  $(this).attr("id").split(",")
-						var moveLatLon = new daum.maps.LatLng(loc[0], loc[1]);
-					    console.log(loc);
-					    // 지도 중심을 부드럽게 이동시킵니다
-					    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-					    map.panTo(moveLatLon)
-					});
+			    	
+			    	plageList = result;
+			    	boardNo2 = plageList.length;	//총 보드 갯수
+			    	perPage = 15;	//한 페이지 당 보드 갯수
+			    	pageTotal2 = Math.ceil((boardNo2 / perPage)); //총 페이지 수 
+			    	var pageNo = 1;	//첫 페이지 넘
+			    	
+			    	placePageCall(pageNo);
 			    }
-		    	}
+		    }
 		    	
 		    	
 				
 		});
 		
 	});
+var pageTotal2;
+var boardNo2;
+var perPage;
+var plageList;
+var gb;
+var placeMap;
+
+function placePageCall(pageNo){
+		console.log(plageList);
+		
+		$(".page_list2").empty();
+		
+		var pageHtml = "";
+		
+		if(pageNo == 1) {
+			if (pageNo == pageTotal2) {
+				pageHtml += pageNo +" 페이지";
+			}else {
+				pageHtml += pageNo +" 페이지";
+				pageHtml += "<button class='nextpage2'>></button>";
+			}
+			
+		}else {
+			if (pageNo == pageTotal2) {
+				pageHtml += "<button class='beforepage2'><</button>";
+				pageHtml += pageNo +" 페이지";
+			}else {
+				pageHtml += "<button class='beforepage2'><</button>";
+				pageHtml += pageNo +" 페이지";
+				pageHtml += "<button class='nextpage2'>></button>";
+			}
+			
+		}
+		$(".page_list2").append(pageHtml);
+		var mapList = "<tr><th>시설명</th><th>상세주소</th><th>시설면적(m²)</th><th>시설구분</th></tr><tr>";
+    		if (pageNo < pageTotal2) {
+    			console.log("no < total");
+		    	for (var i = 0; i < perPage; i++){
+		    		mapList += "<th>" + plageList[i + (perPage * (pageNo - 1))]['시설명'] + "</th>";
+		            mapList += "<th><button class='mapcenter' id='"+plageList[i + (perPage * (pageNo - 1))]['경도']+","+ plageList[i + (perPage * (pageNo - 1))]['위도']+"'><img src='resources/images/marker_icon-icons.com_54388.svg'  width='19px'></button>" + plageList[i + (perPage * (pageNo - 1))]['주소'] + "</th>";
+		            mapList += "<th>" + parseInt(plageList[i + (perPage * (pageNo - 1))]['면적']) + "</th>";
+		            
+		            if (gb=="ingb"){
+		            	mapList += "<th>실내대피소 </th></tr>";
+		            } else if (gb=="outgb"){
+		            	mapList += "<th>옥외대피소 </th></tr>";
+		            }
+				} 
+    	 }else if (pageTotal == 1) {
+//    		 var boardNoSub = boardNo2;
+    		 console.log("to == 1");
+    		 for ( var i = 0; i < plageList.length; i++){
+    			 
+    			mapList += "<th>" + plageList[i ]['시설명'] + "</th>";
+	            mapList += "<th><button class='mapcenter' id='"+plageList[i ]['경도']+","+ plageList[i ]['위도']+"'><img src='resources/images/marker_icon-icons.com_54388.svg'  width='19px'></button>" + plageList[i]['주소'] + "</th>";
+	            mapList += "<th>" + parseInt(plageList[i]['면적']) + "</th>";
+	            
+	            if (gb=="ingb"){
+	            	mapList += "<th>실내대피소 </th></tr>";
+	            } else if (gb=="outgb"){
+	            	mapList += "<th>옥외대피소 </th></tr>";
+	            }
+     		} 
+    	 }else {
+//    		 var boardNoSub = boardNo2;
+    		 console.log("막페");
+    		 for ( var i = 0; i < plageList.length - ((pageTotal2 - 1) * perPage) ; i++){
+    			 
+    			mapList += "<th>" + plageList[i + (perPage * (pageNo - 1))]['시설명'] + "</th>";
+	            mapList += "<th><button class='mapcenter' id='"+plageList[i + (perPage * (pageNo - 1))]['경도']+","+ plageList[i + (perPage * (pageNo - 1))]['위도']+"'><img src='resources/images/marker_icon-icons.com_54388.svg'  width='19px'></button>" + plageList[i + (perPage * (pageNo - 1))]['주소'] + "</th>";
+	            mapList += "<th>" + parseInt(plageList[i + (perPage * (pageNo - 1))]['면적']) + "</th>";
+	            
+	            if (gb=="ingb"){
+	            	mapList += "<th>실내대피소 </th></tr>";
+	            } else if (gb=="outgb"){
+	            	mapList += "<th>옥외대피소 </th></tr>";
+	            }
+// 	    		boardNo2 = boardNo2 - 1;
+     		} 
+    	 }
+    	$(".shelterTable").empty();
+        $(".shelterTable").append(mapList);
+         
+	    $(".mapcenter").on("click", function(){
+				var loc =  $(this).attr("id").split(",")
+				var moveLatLon = new daum.maps.LatLng(loc[0], loc[1]);
+			    console.log(loc);
+			    // 지도 중심을 부드럽게 이동시킵니다
+			    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+			    placeMap.panTo(moveLatLon)
+		});
+         
+     	$('.nextpage2').click(function(){
+     	    pageNo = pageNo + 1;
+     	    console.log("페이지넘"+pageNo);
+     	    placePageCall(pageNo);
+     	});
+     	
+     	$('.beforepage2').click(function(){
+     	    pageNo = pageNo - 1;
+     	    console.log("페이지넘"+pageNo);
+     	    placePageCall(pageNo);
+     	});
+     	
+     	
+	}
 	
 	$("#href1").on('click', function(event){
 		var scrollPosition = $("#gtco-features").offset().top;
@@ -1555,7 +1701,7 @@ document.getElementById("dateTo_id").value = inputNow;
 		return false;
 	});
 	$('#href4').on('click', function(event){
-		var scrollPosition = $("#gtco-services").offset().top;
+		var scrollPosition = $(".aDivHref").offset().top;
 		event.preventDefault();
 
 		$('html, body').animate({
@@ -1573,8 +1719,35 @@ document.getElementById("dateTo_id").value = inputNow;
 		
 		return false;
 	});
+	$('#href6').on('click', function(event){
+	var scrollPosition = $("#gtco-features-2").offset().top;
+	event.preventDefault();
+
+	$('html, body').animate({
+		scrollTop: scrollPosition
+	}, 500, 'easeInOutExpo');
 	
-	
+	return false;
+	});
+	$('#href7').on('click', function(event){
+		var scrollPosition = $("#gtco-counter").offset().top;
+		event.preventDefault();
+
+		$('html, body').animate({
+			scrollTop: scrollPosition
+		}, 500, 'easeInOutExpo');
+		
+		return false;
+	});$('#href8').on('click', function(event){
+		var scrollPosition = $("#gtco-started").offset().top;
+		event.preventDefault();
+
+		$('html, body').animate({
+			scrollTop: scrollPosition
+		}, 500, 'easeInOutExpo');
+		
+		return false;
+	});
 	
 	
 	
@@ -1584,7 +1757,6 @@ var slideIndex = 1;
 showDivs(slideIndex);
 
 function plusDivs(n) {
-	 console.log("ㅎ")
   showDivs(slideIndex += n);
 }
 
@@ -1596,6 +1768,11 @@ function showDivs(n) {
   for (i = 0; i < x.length; i++) {
      x[i].style.display = "none";  
   }
-  x[slideIndex-1].style.display = "block";  
+  try {
+	  x[slideIndex-1].style.display = "block";  
+	}
+	catch(e) {
+	    console.log("슬라이드");
+	}
 }
 

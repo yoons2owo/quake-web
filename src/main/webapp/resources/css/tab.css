@@ -1,0 +1,11 @@
+#gtco-footer .gtco-widget {
+    width: 50%;
+    float: left;
+}
+#leftD {
+    margin-left: 5%;
+    display: inline-block;
+}
+.sliderDiv {
+       padding-left: 10%;
+}

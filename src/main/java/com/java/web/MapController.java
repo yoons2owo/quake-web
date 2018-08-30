@@ -67,7 +67,7 @@ public class MapController {
 	                		map.put("시설명", column[2]);
 	                        map.put("주소", column[3]);
 	                        map.put("면적", column[4]);
-	                        if (column[5] == null || column[6] == null) {
+	                        if (column.length < 6) {
 	                        	map.put("위도", "");
 	                            map.put("경도", ""); 
 	                        	

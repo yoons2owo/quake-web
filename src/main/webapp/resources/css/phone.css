@@ -1,0 +1,20 @@
+#gtco-footer .gtco-widget {
+    width: 100%;
+    float: left;
+}
+#leftD {
+    margin-left: 20%;
+    display: inline-block;
+}
+
+#resultCountDiv{
+    height: 0px;
+    display: none;
+    width: 30%;
+    display: table-cell !important;
+    vertical-align: middle
+    }
+    
+#dataAdiv div {
+    width: 100%;
+}
