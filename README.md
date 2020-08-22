@@ -17,5 +17,6 @@
 * Daum Maps API
 * Google Chart API
 
+### 👇더 궁금하다면👇
 [시연영상](https://www.youtube.com/watch?v=P_kQ2BVhq3g)
 [발표자료](https://github.com/yoons2owo/Resume/blob/master/resources/img/ppt.pdf)
