@@ -11,7 +11,7 @@
 ## 개발 환경 · 사용 기술 · 언어
 * Spring Framework 4.3.12
 * Hadoop-2.9.1
-* Java
+* Java 1.6
 * JavaScript, Jquery
 * CSS, BootStrap
 * Daum Maps API
