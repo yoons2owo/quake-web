@@ -9,13 +9,14 @@
 * Lists, Maps, and Statistics
 
 ## 개발 환경 · 사용 기술 · 언어
-* Eclipse 
-* Linux CentOS7
 * Spring Framework 4.3.12
 * Hadoop-2.9.1
-* Java, JavaScript, Jquery, CSS, BootStrap
+* Java
+* JavaScript, Jquery
+* CSS, BootStrap
 * Daum Maps API
 * Google Chart API
+* Linux CentOS7
 
 ### 👇더 궁금하다면👇
 [시연영상](https://www.youtube.com/watch?v=P_kQ2BVhq3g)
